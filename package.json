@@ -1,0 +1,25 @@
+{
+  "name": "reactjsdemo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.0",
+    "browser-locale": "^1.0.3",
+    "js-cookie": "^2.2.0",
+    "lodash": "^4.17.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-intl": "^2.4.0",
+    "react-localize-redux": "^3.3.0",
+    "react-scripts": "1.1.4",
+    "react-tippy": "^1.2.2",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
