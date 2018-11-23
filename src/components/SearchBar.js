@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { setLastSearch } from "../actions/videoActions";
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: ""
     };
   }
 
   onInputChange = event => {
-    this.setState({ value: event.target.value }, () => this.props.videoSearch(this.state.value));
+    this.props.setLastSearch(event.target.value);    
+    this.props.search(event.target.value);
   };
 
   render() {
@@ -21,10 +25,28 @@ class SearchBar extends Component {
 
     return (
       <div className="form-group" style={style.searchBar}>
-        <input type="text" className="form-control" placeholder="Video search" onChange={this.onInputChange} />
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Video search"
+          onChange={this.onInputChange}
+        />
       </div>
     );
   }
 }
 
-export default SearchBar;
+SearchBar.propTypes = {
+  search: PropTypes.func
+};
+
+SearchBar.defaultProps = {
+  search: () => {}
+};
+
+const mapDispatchToProps = { setLastSearch };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchBar);

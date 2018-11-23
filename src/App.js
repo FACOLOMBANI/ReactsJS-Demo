@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import SearchBar from './components/SearchBar';
+import YoutubeSearchBar from './components/YoutubeSearchBar';
 import VideoList from './components/VideoList';
 import VideoDetail from './components/VideoDetail';
 import { fetchVideos } from './api/YouTubeApi';
@@ -10,7 +10,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      videos: [],
       selectedVideo: null
     };
   }
@@ -22,7 +21,6 @@ class App extends Component {
   videoSearch = term => {
     fetchVideos({ term }, videos => {
       this.setState({
-        videos: videos,
         selectedVideo: videos[0]
       });
     });
@@ -31,8 +29,6 @@ class App extends Component {
   onVideoSelect = selectedVideo => this.setState({ selectedVideo: selectedVideo });
 
   render() {
-    console.log(this.state);
-    // const videoSearch = _.debounce(, 300);
     return (
       <div className="">
         <nav className="navbar navbar-dark bg-dark">
@@ -40,10 +36,10 @@ class App extends Component {
             VideoAPP
           </a>
         </nav>
-        <SearchBar videoSearch={this.videoSearch} />
+        <YoutubeSearchBar />
         <div style={{ display: 'flex' }}>
-          <VideoDetail video={this.state.selectedVideo} />
-          <VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect} />
+          <VideoList onVideoSelect={this.onVideoSelect} />
+          {this.state.selectedVideo && <VideoDetail video={this.state.selectedVideo}/>}
         </div>
       </div>
     );

@@ -25,8 +25,6 @@ const VideoDetail = ({ video }) => {
         </div>
       </div>
     );
-  } else {
-    return <div>Loading...</div>;
   }
 };
 
